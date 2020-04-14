@@ -4,3 +4,7 @@
 ## Clustering with Python
 
 > python version : python 3.7
+
+## CommentCollector
+
+> chromedriver, lxml, beautifulSoap4 사용
