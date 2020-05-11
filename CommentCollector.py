@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver as wd
 import time
+import pandas as pd
 
 # 백앤드 완전히 구현 전, 테스트를 위하여 유튜브 댓글 크롤러를 만든다.
 
@@ -66,3 +67,6 @@ for i in range(len(youtube_user_IDs)):
 
 for i in range(len(str_youtube_userIDs)):
     print(str_youtube_userIDs[i], str_youtube_comments[i])
+
+pd_data = {"ID": str_youtube_userIDs, "Comment": str_youtube_comments}
+youtube_pd = pd.DataFrame(pd_data)

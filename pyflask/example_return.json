@@ -1,0 +1,43 @@
+{
+  "videoList": [
+    {
+      "videoId": "1stvideo",
+      "lastUpdate": "2020-04-25",
+      "rank": 1234,
+      "totalLikeCount": 1234,
+      "totalReplyComment": 1234,
+      "timestampes": [
+        {
+          "userId": "----",
+          "likeCount": 123,
+          "comment": "명장명 키"
+        },
+        {
+          "userId": "----",
+          "likeCount": 123,
+          "comment": "잠깐 보던거 킵 ㅠㅠ"
+        }
+      ]
+    },
+    {
+      "videoId": "2ndvideoㄴs",
+      "lastUpdate": "2020-04-25",
+      "rank": 1234,
+      "totalLikeCount": 1234,
+      "totalReplyComment": 1234,
+      "timestampes": [
+        {
+          "userId": "----",
+          "likeCount": 123,
+          "comment": "명장명 키"
+        },
+        {
+          "userId": "----",
+          "likeCount": 123,
+          "comment": "잠깐 보던거 킵 ㅠㅠ"
+        }
+      ]
+    }
+  ]
+}
+
