@@ -14,7 +14,7 @@ with open('example_return.json') as json_file:
 
 @app.route('/')
 def index():
-    return json_data["lastUpdate"]
+    return json_data 
 
 
 @app.route('/api/highlight/<url>')
