@@ -5,14 +5,16 @@ from collections import OrderedDict
 # Youtube API로부터 받은 데이터 파일을 가공하여 프론트에 표시될 수 있게 가공한다
 # 현재 결과는 output_dummy.json 파일로 생성한다
 
+
 with open('./data/input_dummy.json') as json_file:
     # json 파일을 불러온다
     json_data = json.load(json_file)
-    # 댓글 번호
+
     processed_video_data = OrderedDict()
     video_id = json_data["items"][0]["snippet"]["videoId"]
     processed_video_data["video_id"] = video_id
     processed_comment_list = []
+
     for comment_number in range(100):
         # 필요한 정보들을 불러온다
         video_id = json_data["items"][comment_number]["snippet"]["videoId"]
@@ -43,6 +45,10 @@ with open('./data/input_dummy.json') as json_file:
         # time case 4 : 100시간 미만 ex) 11:23:53
         time_case_4 = re.compile(r'\d\d:\d\d:\d\d')
         time_stamp_list.extend(time_case_4.findall(text_display))
+        # 추후 타임스탬프 댓글을 읽기 위해서는 아래 코드 사용
+        # Regex span , regex group span
+        # if time_case_1.findall(text_display):
+        #     print(time_case_1.search(text_display).span(0))
 
         processed_comment = OrderedDict()
         processed_comment["video_id"] = video_id
