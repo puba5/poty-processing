@@ -23,11 +23,12 @@ with open('./data/input_dummy.json') as json_file:
         print(text_display)
         # 좋아요 수
         like_count = json_data["items"][comment_number]["snippet"]["topLevelComment"]["snippet"]["likeCount"]
-        # user_id
+        # 댓글 작성자
+        user_id = json_data["items"][comment_number]["snippet"]["topLevelComment"]["snippet"]["authorDisplayName"]
+        # total_reply_count
+        totalReplyCount = json_data["items"][comment_number]["snippet"]["totalReplyCount"]
         # 댓글 작성 시간
         # published_at
-        # 전체 대댓글 개수
-        # total_reply_count
 
         # 시간을 정규 표현식을 이용하여 구한다
         # 시간, 즉 timestamp는 4가지 경우
@@ -55,6 +56,8 @@ with open('./data/input_dummy.json') as json_file:
         processed_comment["text_display"] = text_display
         processed_comment["like_count"] = like_count
         processed_comment["time_stamp"] = time_stamp_list
+        processed_comment["user_id"] = user_id
+        processed_comment["totalReplyCount"] = totalReplyCount
 
         processed_comment_list.append(processed_comment)
 
