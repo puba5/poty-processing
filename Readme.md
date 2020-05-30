@@ -18,7 +18,6 @@
 > pip3 install flask <br>
 > pip3 install flask-cors <br>
 > pip3 install flask_restful <br>
-> pip3 install request <br>
 > python app.py
 
 ## 구동 과정 

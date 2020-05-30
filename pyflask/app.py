@@ -1,9 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
 from flask_cors import CORS
 from flask_restful import Resource, Api
-
-import request
 
 app = Flask(__name__)
 api = Api(app)
@@ -47,10 +45,13 @@ def predict():
     return jsonify({'class_id': 'IMAGE_NET_XXX', 'class_name': 'Cat'})
 
 
-@app.route('/post', methods=['POST', 'GET'])
+@app.route('/post', methods=['POST'])
 def post():
-    value = request.form['test']
-    return value
+    # 이게 잘 동작하니까 이걸 참고하도록
+    print("Loaded")
+    print(json.loads(request.get_data()))
+    data = json.loads(request.get_data())
+    return jsonify(data)
 
 
 class CreateUser(Resource):
