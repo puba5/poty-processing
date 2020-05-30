@@ -2,10 +2,9 @@ from flask import Flask, jsonify, request
 import json
 from flask_cors import CORS
 from flask_restful import Resource, Api
-import os
 import sys
 
-sys.path.append(os.pardir)
+sys.path.append("../")
 from data_processing import data_processing
 from comment_highlight import comment_highlight
 
