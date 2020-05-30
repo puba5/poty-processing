@@ -5,10 +5,13 @@ from collections import OrderedDict
 # Youtube API로부터 받은 데이터 파일을 가공하여 프론트에 표시될 수 있게 가공한다
 # 현재 결과는 output_dummy.json 파일로 생성한다
 
+tmp = './data/input_dummy.json'
 
-with open('./data/input_dummy.json') as json_file:
+
+def data_processing(input_json):
+    # with open('./data/input_dummy.json') as json_file:
     # json 파일을 불러온다
-    json_data = json.load(json_file)
+    json_data = json.load(input_json)
 
     processed_video_data = OrderedDict()
     video_id = json_data["items"][0]["snippet"]["videoId"]
