@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 import json
 from flask_cors import CORS
 from flask_restful import Resource, Api
@@ -28,9 +28,23 @@ def highlight(url):
     return "none"
 
 
+# json 파일을 받은 후 그대로 return 하는 함수
+@app.route('/api/echo-json', methods=['GET', 'POST', 'DELETE', 'PUT'])
+def add():
+    data = request.get_json()
+    # ... do your business logic, and return some response
+    # e.g. below we're just echo-ing back the received JSON data
+    return jsonify(data)
+
+
 @app.route('/info')
-def info(jj):
-    return jj
+def info():
+    return "hello"
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    return jsonify({'class_id': 'IMAGE_NET_XXX', 'class_name': 'Cat'})
 
 
 @app.route('/post', methods=['POST', 'GET'])
