@@ -8,3 +8,5 @@
 ## CommentCollector
 
 > chromedriver, lxml, beautifulSoap4 사용
+
+## 구현 방법
