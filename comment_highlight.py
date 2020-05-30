@@ -42,7 +42,7 @@ with open('./data/output_dummy.json') as json_file:
                 # highlight_list_replyCnt[time_stamp] = reply_count
 
     b = sorted(highlight_list.items())
-
+    # 좋아요 수로 정렬하여 가장 높은 하이라이트를 구한다
     highlight_by_likecount = sorted(highlight_list.items(), reverse=True, key=operator.itemgetter(1))
 
     # 하이라이트로 보여줄 개수
@@ -71,3 +71,30 @@ with open('./data/output_dummy.json') as json_file:
 
     with open("./data/result.json", "w", encoding="utf-8") as fp:
         json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
+
+
+# 3:55 같은 string 형태의 시간을 초단위의 int형으로 변환하는 함수
+def time_conversion(time_string):
+    hour = 0
+    minute = 0
+    sec = 0
+    # time case 1 : 10분 미만 ex) 3:32
+    if len(time_string) == 4:
+        minute = int(time_string[0:1])
+        sec = int(time_string[3:])
+    # time case 2 : 1시간 미만 ex) 35:53
+    if len(time_string) == 5:
+        minute = int(time_string[0:2])
+        sec = int(time_string[3:])
+    # time case 3 : 10시간 미만 ex) 1:32:34
+    if len(time_string) == 7:
+        hour = int(time_string[0:1])
+        minute = int(time_string[2:4])
+        sec = int(time_string[5:])
+    # time case 4 : 100시간 미만 ex) 11:23:53
+    if len(time_string) == 8:
+        hour = int(time_string[0:2])
+        minute = int(time_string[3:5])
+        sec = int(time_string[6:])
+    time_num = 60 * 60 * hour + 60 * minute + sec
+    return time_num
