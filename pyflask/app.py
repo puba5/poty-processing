@@ -52,7 +52,6 @@ def predict():
 
 @app.route('/post', methods=['POST', 'GET'])
 def post():
-    # 이게 잘 동작하니까 이걸 참고하도록
     print("Loaded")
     print(json.loads(request.get_data()))
     data = json.loads(request.get_data())
