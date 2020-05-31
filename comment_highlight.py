@@ -33,7 +33,8 @@ def time_conversion(time_string):
 def comment_highlight(json_file):
     #  with open('./data/output_dummy.json') as json_file:
     # json 파일을 불러온다
-    json_data = json.load(json_file)
+    # json_data = json.load(json_file)
+    json_data = json_file
     # 처리된 결과를 저장할 json Data
 
     processed_highlight_data = OrderedDict()
@@ -91,7 +92,7 @@ def comment_highlight(json_file):
                 highlight["timestamp"])
             # 만약 그 시간 차가 3 이하라면 같은 댓글로 취급
             if abs(time_gap) <= 3:
-                print(highlight["timestamp"], "dup")
+                # print(highlight["timestamp"], "dup")
                 isDup = True
 
         if isDup:
@@ -115,5 +116,6 @@ def comment_highlight(json_file):
 
     processed_highlight_data["highlights"] = processed_highlight_list
 
-    with open("./data/result.json", "w", encoding="utf-8") as fp:
-        json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
+    # with open("./data/result.json", "w", encoding="utf-8") as fp:
+    #     json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
+    return json.dumps(processed_highlight_data)

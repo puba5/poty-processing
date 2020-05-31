@@ -11,7 +11,8 @@ tmp = './data/input_dummy.json'
 def data_processing(input_json):
     # with open('./data/input_dummy.json') as json_file:
     # json 파일을 불러온다
-    json_data = json.load(input_json)
+    # json_data = json.load(input_json)
+    json_data = input_json
 
     processed_video_data = OrderedDict()
     video_id = json_data["items"][0]["snippet"]["videoId"]
@@ -66,5 +67,6 @@ def data_processing(input_json):
 
     processed_video_data["comments"] = processed_comment_list
 
-    with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
-        json.dump(processed_video_data, fp, ensure_ascii=False, indent="\t")
+    # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
+    #     json.dump(processed_video_data, fp, ensure_ascii=False, indent="\t")
+    return json.dumps(processed_video_data)
