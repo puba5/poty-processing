@@ -79,6 +79,7 @@ def comment_highlight(json_file):
     # 좋아요 수로 정렬하여 가장 높은 하이라이트를 구한다
     highlight_by_likecount = sorted(highlight_list.items(), reverse=True, key=operator.itemgetter(1))
 
+    print(highlight_by_likecount)
     # 하이라이트로 보여줄 개수
     highlight_cnt = 5
     for k in range(highlight_cnt):
@@ -99,9 +100,9 @@ def comment_highlight(json_file):
                 # print(highlight["timestamp"], "dup")
                 isDup = True
 
-        if isDup:
-            highlight_cnt += 1
-            # print("dup")
+        # if isDup:
+        #     highlight_cnt += 1
+        #     # print("dup")
 
         # print("notDup")
 
@@ -120,6 +121,11 @@ def comment_highlight(json_file):
 
     processed_highlight_data["highlights"] = processed_highlight_list
 
-    # with open("./data/result.json", "w", encoding="utf-8") as fp:
-    #     json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
+    with open("./data/result.json", "w", encoding="utf-8") as fp:
+        json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
     return json.dumps(processed_highlight_data)
+
+
+with open('./data/output_dummy.json') as json_file:
+    json_data = json.load(json_file)
+    comment_highlight(json_data)
