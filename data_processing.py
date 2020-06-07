@@ -10,7 +10,7 @@ tmp = './data/input_dummy.json'
 
 
 def data_processing(input_json):
-    # with open('./data/input_dummy.json') as json_file:
+    # with open('./data/2.json') as json_file:
     # json 파일을 불러온다
     # json_data = json.load(input_json)
     json_data = input_json
@@ -45,13 +45,13 @@ def data_processing(input_json):
 
         time_stamp_list = []
         # time case 1 : 10분 미만 ex) 3:32
-        time_case_1 = re.compile(r'\d:\d\d')
+        time_case_1 = re.compile(r'[^\d]\d:\d\d')
         time_stamp_list.extend(time_case_1.findall(text_display))
         # time case 2 : 1시간 미만 ex) 35:53
-        time_case_2 = re.compile(r'\d\d:\d\d')
+        time_case_2 = re.compile(r'[^:]\d\d:\d\d')
         time_stamp_list.extend(time_case_2.findall(text_display))
         # time case 3 : 10시간 미만 ex) 1:32:34
-        time_case_3 = re.compile(r'\d:\d\d:\d\d')
+        time_case_3 = re.compile(r'[^\d]\d:\d\d:\d\d')
         time_stamp_list.extend(time_case_3.findall(text_display))
         # time case 4 : 100시간 미만 ex) 11:23:53
         time_case_4 = re.compile(r'\d\d:\d\d:\d\d')
@@ -80,8 +80,8 @@ def data_processing(input_json):
 
 
 # 파일에 작성하여 테스트
-
-# with open('./data/input_dummy.json') as json_file:
+#
+# with open(tmp) as json_file:
 #     json_data = json.load(json_file)
 #
 #     new_json_data = data_processing(json_data)
