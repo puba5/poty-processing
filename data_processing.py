@@ -44,18 +44,37 @@ def data_processing(input_json):
         # 시간, 즉 timestamp는 4가지 경우
 
         time_stamp_list = []
-        # time case 1 : 10분 미만 ex) 3:32
-        time_case_1 = re.compile(r'[^\d]\d:\d\d')
-        time_stamp_list.extend(time_case_1.findall(text_display))
-        # time case 2 : 1시간 미만 ex) 35:53
-        time_case_2 = re.compile(r'[^:]\d\d:\d\d')
-        time_stamp_list.extend(time_case_2.findall(text_display))
-        # time case 3 : 10시간 미만 ex) 1:32:34
-        time_case_3 = re.compile(r'[^\d]\d:\d\d:\d\d')
-        time_stamp_list.extend(time_case_3.findall(text_display))
+
+        tmp_text_display = text_display
+
         # time case 4 : 100시간 미만 ex) 11:23:53
         time_case_4 = re.compile(r'\d\d:\d\d:\d\d')
-        time_stamp_list.extend(time_case_4.findall(text_display))
+        time_case_4_list = time_case_4.findall(tmp_text_display)
+        time_stamp_list.extend(time_case_4.findall(tmp_text_display))
+        for time_string in time_case_4_list:
+            tmp_text_display = tmp_text_display.replace(time_string, "")
+
+        # time case 3 : 10시간 미만 ex) 1:32:34
+        time_case_3 = re.compile(r'\d:\d\d:\d\d')
+        time_case_3_list = time_case_3.findall(tmp_text_display)
+        time_stamp_list.extend(time_case_3.findall(tmp_text_display))
+        for time_string in time_case_3_list:
+            tmp_text_display = tmp_text_display.replace(time_string, "")
+
+        # time case 2 : 1시간 미만 ex) 35:53
+        time_case_2 = re.compile(r'\d\d:\d\d')
+        time_case_2_list = time_case_2.findall(tmp_text_display)
+        time_stamp_list.extend(time_case_2.findall(tmp_text_display))
+        for time_string in time_case_2_list:
+            tmp_text_display = tmp_text_display.replace(time_string, "")
+
+        # time case 1 : 10분 미만 ex) 3:32
+        time_case_1 = re.compile(r'\d:\d\d')
+        time_case_1_list = time_case_1.findall(tmp_text_display)
+        time_stamp_list.extend(time_case_1_list)
+        for time_string in time_case_1_list:
+            tmp_text_display = tmp_text_display.replace(time_string, "")
+
         # 추후 타임스탬프 댓글을 읽기 위해서는 아래 코드 사용
         # Regex span , regex group span
         # if time_case_1.findall(text_display):
@@ -75,14 +94,14 @@ def data_processing(input_json):
 
     # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
     #     json.dump(processed_video_data, fp, ensure_ascii=False, indent="\t")
-
+    print(json.dumps(processed_video_data))
     return json.dumps(processed_video_data)
 
 
 # 파일에 작성하여 테스트
 #
-# with open(tmp) as json_file:
-#     json_data = json.load(json_file)
-#
-#     new_json_data = data_processing(json_data)
-#     print(new_json_data)
+with open(tmp) as json_file:
+    json_data = json.load(json_file)
+
+    new_json_data = data_processing(json_data)
+    print(new_json_data)
