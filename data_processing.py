@@ -100,8 +100,8 @@ def data_processing(input_json):
 
 # 파일에 작성하여 테스트
 #
-with open(tmp) as json_file:
-    json_data = json.load(json_file)
-
-    new_json_data = data_processing(json_data)
-    print(new_json_data)
+# with open(tmp) as json_file:
+#     json_data = json.load(json_file)
+#
+#     new_json_data = data_processing(json_data)
+#     print(new_json_data)
