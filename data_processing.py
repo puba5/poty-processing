@@ -76,7 +76,7 @@ def data_processing(input_json):
     # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
     #     json.dump(processed_video_data, fp, ensure_ascii=False, indent="\t")
 
-    return json.dumps(processed_video_data, ensure_ascii=False)
+    return json.dumps(processed_video_data)
 
 
 # 파일에 작성하여 테스트
