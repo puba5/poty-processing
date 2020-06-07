@@ -121,11 +121,11 @@ def comment_highlight(json_file):
 
     processed_highlight_data["highlights"] = processed_highlight_list
 
-    with open("./data/result.json", "w", encoding="utf-8") as fp:
-        json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
+    # with open("./data/result.json", "w", encoding="utf-8") as fp:
+    #     json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
     return json.dumps(processed_highlight_data)
 
 
-with open('./data/output_dummy.json') as json_file:
-    json_data = json.load(json_file)
-    comment_highlight(json_data)
+# with open('./data/output_dummy.json') as json_file:
+#     json_data = json.load(json_file)
+#     comment_highlight(json_data)
