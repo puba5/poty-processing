@@ -122,4 +122,4 @@ def comment_highlight(json_file):
 
     # with open("./data/result.json", "w", encoding="utf-8") as fp:
     #     json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
-    return json.dumps(processed_highlight_data, ensure_ascii=False, indent="\t")
+    return json.dumps(processed_highlight_data)
