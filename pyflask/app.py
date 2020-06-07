@@ -1,8 +1,12 @@
+# -*- coding: utf-8 -*-
+# 파이썬 버젼에 따른 인코딩 문제 때문에 줄 추가
+
 from flask import Flask, jsonify, request
 import json
 from flask_cors import CORS
 from flask_restful import Resource, Api
 import sys
+from ast import literal_eval
 
 sys.path.append("../")
 from data_processing import data_processing
@@ -55,18 +59,23 @@ def post():
     print("Loaded")
     print(json.loads(request.get_data()))
     data = json.loads(request.get_data())
+    data = json.dumps(data, ensure_ascii=False).encode('utf8')
+    # binary data를 string으로 변환
+    data = eval(data)
+    # 현재 받은 data에서는 true, false라고 저장되어 있는데 python에서는 True, False라고 저장해야한다
+    data = data.replace("true", "True")
+    data = data.replace("false", "False")
+    # string to dictionary
+    data = literal_eval(data)
+    # 데이터 1차 가공 - input 데이터 중 댓글만 받는다
     data2 = data_processing(data)
+    # 가공된 데이터는 string 형이라, 다시 dictionary 형태로 변환
+    data2 = literal_eval(data2)
+    # 데이터 2차 가공 - highlighting
     data3 = comment_highlight(data2)
     return jsonify(data3)
 
 
-class CreateUser(Resource):
-    def post(self):
-        print(self)
-        return {'status': 'success'}
-
-
-api.add_resource(CreateUser, '/user')
-
+# host 주소는 0.0.0.0, 3000번 포트에서 배포
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='3000', debug=True)
