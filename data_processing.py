@@ -80,11 +80,8 @@ def data_processing(input_json):
 
 # 파일에 작성하여 테스트
 
-with open('./data/input_dummy.json') as json_file:
-    json_data = json.load(json_file)
-    # data_processing(json_data)
-    new_json_data = data_processing(json_data)
-    print(new_json_data)
-    # print(new_json_data)
-    # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
-    #     json.dump(data_processing(json_data), fp, ensure_ascii=False, indent="\t")
+# with open('./data/input_dummy.json') as json_file:
+#     json_data = json.load(json_file)
+#
+#     new_json_data = data_processing(json_data)
+#     print(new_json_data)
