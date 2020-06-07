@@ -17,14 +17,19 @@ def data_processing(input_json):
     processed_video_data = OrderedDict()
     video_id = json_data["items"][0]["snippet"]["videoId"]
     processed_video_data["video_id"] = video_id
+    # 받은 댓글의 수
+    commnet_all_cnt = json_data["pageInfo"]["totalResults"]
+    # 받은 댓글의 수를 저장해준다
+    processed_video_data["totalResults"] = commnet_all_cnt
+
     processed_comment_list = []
 
-    for comment_number in range(100):
+    for comment_number in range(commnet_all_cnt):
         # 필요한 정보들을 불러온다
         video_id = json_data["items"][comment_number]["snippet"]["videoId"]
         # 댓글 내용
         text_display = json_data["items"][comment_number]["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
-        print(text_display)
+        # print(text_display)
         # 좋아요 수
         like_count = json_data["items"][comment_number]["snippet"]["topLevelComment"]["snippet"]["likeCount"]
         # 댓글 작성자
@@ -69,4 +74,17 @@ def data_processing(input_json):
 
     # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
     #     json.dump(processed_video_data, fp, ensure_ascii=False, indent="\t")
-    return json.dumps(processed_video_data)
+
+    return json.dumps(processed_video_data, ensure_ascii=False, indent="\t")
+
+
+# 파일에 작성하여 테스트
+
+with open('./data/input_dummy.json') as json_file:
+    json_data = json.load(json_file)
+    # data_processing(json_data)
+    new_json_data = data_processing(json_data)
+    print(new_json_data)
+    # print(new_json_data)
+    # with open("./data/output_dummy.json", "w", encoding="utf-8") as fp:
+    #     json.dump(data_processing(json_data), fp, ensure_ascii=False, indent="\t")

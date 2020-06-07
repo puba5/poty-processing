@@ -47,10 +47,13 @@ def comment_highlight(json_file):
 
     highlight_list = dict()
 
+    # comment 개수
+    comment_all_cnt = json_data["totalResults"]
+
     # 연 json 파일을 저장한다
     data_list = []
 
-    for i in range(100):
+    for i in range(comment_all_cnt):
         text_display = json_data["comments"][i]['text_display']
         time_stamps = json_data["comments"][i]['time_stamp']
         like_count = json_data["comments"][i]['like_count']
@@ -118,4 +121,4 @@ def comment_highlight(json_file):
 
     # with open("./data/result.json", "w", encoding="utf-8") as fp:
     #     json.dump(processed_highlight_data, fp, ensure_ascii=False, indent="\t")
-    return json.dumps(processed_highlight_data)
+    return json.dumps(processed_highlight_data, ensure_ascii=False, indent="\t")
