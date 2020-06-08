@@ -75,6 +75,9 @@ def data_processing(input_json):
         for time_string in time_case_1_list:
             tmp_text_display = tmp_text_display.replace(time_string, "")
 
+        # time_stamp 중복 제거
+        time_stamp_list = list(set(time_stamp_list))
+
         # 추후 타임스탬프 댓글을 읽기 위해서는 아래 코드 사용
         # Regex span , regex group span
         # if time_case_1.findall(text_display):
