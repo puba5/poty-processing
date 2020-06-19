@@ -78,7 +78,7 @@ def post():
     data3 = comment_highlight(data2)
     # 데이터에서 역 슬래쉬가 연속으로 두번 나올 때 4번으로 표기되는 문제 해결하기 위해 작성
     data3 = data3.replace("\\\\", "\\")
-    return jsonify(data3)
+    return data3
 
 
 # host 주소는 0.0.0.0, 3000번 포트에서 배포
