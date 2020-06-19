@@ -57,7 +57,7 @@ def predict():
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     print("Loaded")
-    print(json.loads(request.get_data()))
+    # print(json.loads(request.get_data()))
     data = json.loads(request.get_data())
     data = json.dumps(data, ensure_ascii=False).encode('utf8')
     # post 요청으로 받은 json 데이터는 binary data로 받는다
@@ -76,6 +76,8 @@ def post():
     data2 = literal_eval(data2)
     # 데이터 2차 가공 - 댓글 중에 하이라이트를 찾아서 return 해준다, highlighting
     data3 = comment_highlight(data2)
+    # 데이터에서 역 슬래쉬가 연속으로 두번 나올 때 4번으로 표기되는 문제 해결하기 위해 작성
+    data3 = data3.replace("\\\\", "\\")
     return jsonify(data3)
 
 
