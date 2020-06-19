@@ -60,18 +60,21 @@ def post():
     print(json.loads(request.get_data()))
     data = json.loads(request.get_data())
     data = json.dumps(data, ensure_ascii=False).encode('utf8')
-    # binary data를 string으로 변환
+    # post 요청으로 받은 json 데이터는 binary data로 받는다
+    # 따라서 binary data를 string으로 변환
     data = eval(data)
-    # 현재 받은 data에서는 true, false라고 저장되어 있는데 python에서는 True, False라고 저장해야한다
+    # 현재 받은 data에서는 true, false라고 저장되어 있다.
+    # 하지만 python에서는 bool 자료형의 첫 글자는 대문자이므로, True, False라고 저장해준다.
     data = data.replace("true", "True")
     data = data.replace("false", "False")
-    # string to dictionary
+    # 바꾼 string 데이터를 json 파일로 바꾸어주어야한다.
+    # python에서 json 데이터는 dictionary 타입이므로 string to dictionary으로 변환해준다
     data = literal_eval(data)
-    # 데이터 1차 가공 - input 데이터 중 댓글만 받는다
+    # 데이터 1차 가공 - input으로 받은 Youtube API 데이터 중 댓글들만 모아서 저장한다
     data2 = data_processing(data)
-    # 가공된 데이터는 string 형이라, 다시 dictionary 형태로 변환
+    # 가공된 데이터는 string 형태이므로, json 형태 즉, dictionary 형태로 변환
     data2 = literal_eval(data2)
-    # 데이터 2차 가공 - highlighting
+    # 데이터 2차 가공 - 댓글 중에 하이라이트를 찾아서 return 해준다, highlighting
     data3 = comment_highlight(data2)
     return jsonify(data3)
 
